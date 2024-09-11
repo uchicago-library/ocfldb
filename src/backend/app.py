@@ -3,13 +3,18 @@ import math
 import os
 import time
 
+from config import Config
 from flask import Flask, jsonify, request
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import create_engine, desc
 from sqlalchemy.ext.automap import automap_base
 
+import logging
+logging.basicConfig(level=logging.DEBUG)
+
 app = Flask(__name__)
-db_path = os.path.join(os.path.dirname(__file__), 'ark_data.db')
+app.config.from_object(Config)
+db_path = app.config.get('DATABASE_URI')
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///{}'.format(db_path)
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)

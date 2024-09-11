@@ -1,3 +1,4 @@
 ark_data.db
+src/backend/config.py
 src/frontend/node_modules
 venv
