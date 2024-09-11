@@ -1,0 +1,153 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+/*
+ * MAIN
+ */
+
+body {
+  background-color: white;
+  font-family: sans-serif;
+  margin: 0;
+  padding: 1rem;
+}
+button {
+  align-items: center;
+  background-color: none;
+  border-radius: .25rem;
+  border-width: 2px;
+  display: inline-flex;
+  height: 2rem;
+  justify-content: center;
+  margin: 0 .125rem;
+  padding: .25rem;
+}
+button.pager {
+  min-width: 2rem;
+  white-space: nowrap;
+}
+div.downloadAsExcel {
+  float: right;
+}
+form.filterForm {
+  float: left;
+  margin-bottom: 1rem;
+}
+h1 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  padding-bottom: 1rem;
+}
+input[type='text'] {
+  border-radius: .25rem;
+  border-width: 2px;
+  box-sizing: border-box;
+  height: 2rem;
+  padding: .25rem;
+}
+  /*
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  */
+select {
+  border-radius: .25rem;
+  border-width: 2px;
+  box-sizing: border-box;
+  height: 2rem;
+  padding: .25rem;
+}
+th {
+  font-weight: bold;
+}
+th:has(.resizer) {
+  position: relative;
+}
+.resizer {
+  background-color: #ccc;
+  bottom: 0;
+  cursor: col-resize;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: .25rem;
+}
+.isResizing {
+  background-color: black;
+}
+table {
+  background-color: white;
+  border-collapse: collapse;
+  border-spacing: 0;
+  margin-bottom: 1rem;
+}
+th, td {
+  border-top: 1px solid #e2e3e1;
+  border-bottom: 1px solid #e2e3e1;
+  height: 1rem;
+  overflow: hidden;
+  padding: .5rem;
+  text-align: left;
+  text-overflow: ellipsis;
+  vertical-align: top;
+  white-space: nowrap;
+}
+th {
+  border-top: none;
+  cursor: pointer;
+}
+th:first-child, td:first-child {
+    border-left: none;
+}
+th:last-child, td:last-child {
+    border-right: none;
+}
+tr {
+  height: 1rem;
+}
