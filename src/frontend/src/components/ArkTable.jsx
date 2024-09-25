@@ -40,7 +40,7 @@ const columns = [
 
 const fetchFilteredAndSortedData = async ({ filterFor, filterIn, pagination, sorting }) => {
   let params = {
-    'page': 0,
+    'page': pagination.pageIndex,
     'pageSize': pagination.pageSize
   }
   if (filterFor && filterIn) {
@@ -52,9 +52,9 @@ const fetchFilteredAndSortedData = async ({ filterFor, filterIn, pagination, sor
   }
   let url;
   if (Object.keys(params).length) {
-    url = '/data?' + new URLSearchParams(params).toString()
+    url = 'http://127.0.0.1:5000?' + new URLSearchParams(params).toString()
   } else {
-    url = '/data'
+    url = 'http://127.0.0.1:5000'
   }
   const response = await fetch(url)
   if (!response.ok) {
@@ -77,8 +77,6 @@ const ArkTable = () => {
     queryFn: () => fetchFilteredAndSortedData({filterFor, filterIn, pagination, sorting}),
     placeholderData: keepPreviousData
   }); 
-
-  useEffect(() => console.log(data), [data])
 
   const table = useReactTable({
     data: data.data,
@@ -141,8 +139,9 @@ const ArkTable = () => {
     pageLinks.push(
       <button
         className='pager'
-        onClick={() => table.firstPage()}
         disabled={pagination.pageIndex == 0}
+        key='pagerFirstPage'
+        onClick={() => table.firstPage()}
       >
         [1]
       </button>
@@ -150,6 +149,7 @@ const ArkTable = () => {
     pageLinks.push(
       <button
         className='pager'
+        key={`pagerPreviousPage${pagination.pageIndex}`}
         onClick={() => table.previousPage()}
       >
         {'< Prev'}
@@ -161,8 +161,9 @@ const ArkTable = () => {
     pageLinks.push(
       <button
         className='pager'
-        onClick={() => handlePageChange((p) => p - 1)}
         disabled={pagination.pageIndex + 1 == p}
+        key={`pager${p}`}
+        onClick={() => handlePageChange(p - 1)}
       >
         { p }
       </button>
@@ -173,6 +174,7 @@ const ArkTable = () => {
     pageLinks.push(
       <button
         className='pager'
+        key={`pagerNextPage${pagination.pageIndex}`}
         onClick={() => table.nextPage()}
       >
         {'Next >'}
@@ -181,8 +183,9 @@ const ArkTable = () => {
     pageLinks.push(
       <button
         className='pager'
-        onClick={() => table.lastPage()}
         disabled={pagination.pageIndex == table.getPageCount() - 1}
+        key='pagerLastPage'
+        onClick={() => table.lastPage()}
       >
         { pagination.pageIndex + 1 < table.getPageCount()  ? `[${table.getPageCount()}]` : table.getPageCount() }
       </button>
