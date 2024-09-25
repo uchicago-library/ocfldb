@@ -52,9 +52,9 @@ const fetchFilteredAndSortedData = async ({ filterFor, filterIn, pagination, sor
   }
   let url;
   if (Object.keys(params).length) {
-    url = 'http://127.0.0.1:5000?' + new URLSearchParams(params).toString()
+    url = '/data?' + new URLSearchParams(params).toString()
   } else {
-    url = 'http://127.0.0.1:5000'
+    url = '/data'
   }
   const response = await fetch(url)
   if (!response.ok) {
@@ -208,7 +208,7 @@ const ArkTable = () => {
           <button type="submit">Filter Results</button> 
         </form>
         <div className="downloadAsExcel">
-          <button onClick={() => window.location.href = 'http://127.0.0.1:5000/download'}>Download Entire Dataset as Excel</button>
+          <button onClick={() => window.location.href = '/data/download'}>Download Entire Dataset as Excel</button>
         </div>
       </div>
       <div className='body'>

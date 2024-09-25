@@ -5,7 +5,7 @@ import openpyxl
 import os
 import time
 
-from .config import Config
+from config import Config
 from flask import Flask, jsonify, request, send_file
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import create_engine, desc
