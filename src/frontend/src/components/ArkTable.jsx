@@ -208,7 +208,7 @@ const ArkTable = () => {
           <button type="submit">Filter Results</button> 
         </form>
         <div className="downloadAsExcel">
-          <button>Download as Excel</button>
+          <button onClick={() => window.location.href = 'http://127.0.0.1:5000/download'}>Download Entire Dataset as Excel</button>
         </div>
       </div>
       <div className='body'>

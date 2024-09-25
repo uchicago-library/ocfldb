@@ -1,10 +1,12 @@
+import io
 import json
 import math
+import openpyxl
 import os
 import time
 
-from config import Config
-from flask import Flask, jsonify, request
+from .config import Config
+from flask import Flask, jsonify, request, send_file
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import create_engine, desc
 from sqlalchemy.ext.automap import automap_base
@@ -87,6 +89,32 @@ def data():
     response = jsonify(output)
     response.headers.add('Access-Control-Allow-Origin', '*')
 
-    # time.sleep(1)
-
     return response
+
+@app.route('/download')
+def download():
+    output = io.BytesIO()
+
+    wb = openpyxl.Workbook()
+    ws = wb.active
+    ws.append(['ARK', 'Original Identifier', 'Project', 'URL', 'Path'])
+
+    results = db.session.query(Arks)
+    for row in [to_dict(ark) for ark in results]:
+        ws.append([
+            row['ark'],
+            row['original_identifier'],
+            row['project'],
+            row['url'],
+            row['path']
+        ])
+
+    wb.save(output)
+    output.seek(0)
+   
+    return send_file( 
+        output,
+        as_attachment=True,
+        download_name='ark_data.xlsx',
+        mimetype='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+    )
