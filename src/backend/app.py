@@ -35,7 +35,7 @@ def to_dict(ark):
         'validation_date': ark.validation_date
     }
 
-@app.route('/data')
+@app.route('/')
 def data():
     sort_by = request.args.get('sortBy', None)
     order = request.args.get('order', None)

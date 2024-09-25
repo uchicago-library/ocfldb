@@ -52,9 +52,9 @@ const fetchFilteredAndSortedData = async ({ filterFor, filterIn, pagination, sor
   }
   let url;
   if (Object.keys(params).length) {
-    url = 'http://127.0.0.1:5000/data?' + new URLSearchParams(params).toString()
+    url = '/data?' + new URLSearchParams(params).toString()
   } else {
-    url = 'http://127.0.0.1:5000/data'
+    url = '/data'
   }
   const response = await fetch(url)
   if (!response.ok) {
@@ -161,7 +161,7 @@ const ArkTable = () => {
     pageLinks.push(
       <button
         className='pager'
-        onClick={() => handlePageChange(p - 1)}
+        onClick={() => handlePageChange((p) => p - 1)}
         disabled={pagination.pageIndex + 1 == p}
       >
         { p }
