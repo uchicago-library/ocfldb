@@ -3,9 +3,14 @@ import json
 import math
 import openpyxl
 import os
+import sys
 import time
 
-from config import Config
+try:
+    from config import Config
+except ModuleNotFoundError:
+    from .config import Config
+
 from flask import Flask, jsonify, request, send_file
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import create_engine, desc
